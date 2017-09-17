@@ -26,13 +26,31 @@ int          f()
      {
        read(0, str, 11);
        x = atoi(str);
-       if (x > -10)
+       if ((x % 5 == 0) && (x > 25))
        {
          sleep(10);
-         dprintf(1, "%d\n", x*2);
+         dprintf(1, "%d\n", (x + 1)*2);
        }
        else
-         while(1);
+        if ((x % 5 == 0) && (x <= 20))
+        {
+          sleep(30);
+          dprintf(1, "%d\n", (x + 1)*2);
+        }
+       else
+          if (( x % 3 == 0) && (x > 30))
+          {
+            sleep(30);
+            dprintf(1, "0\n");
+          }
+          else
+          if (( x % 8 == 0) && (x < 30))
+          {
+            sleep(10);
+            dprintf(1, "0\n");
+          }
+          else
+         while(42);
      }
      exit(EXIT_SUCCESS);
    }
@@ -56,12 +74,17 @@ int          g()
      {
        read(0, str, 11);
        x = atoi(str);
-       if (x < 10)
+       if ((x % 5 == 0)&&(x < 70))
        {
          sleep(20);
-         dprintf(1, "%d\n", x*4);
+         dprintf(1, "%d\n", (x + 1)*2);
        }
        else
+       if ((x % 7 == 0)&&(x < 70))
+       {
+         sleep(20);
+         dprintf(1, "0\n");
+       }
          while(1);
      }
      exit(EXIT_SUCCESS);

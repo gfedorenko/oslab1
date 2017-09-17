@@ -22,15 +22,17 @@ void     init_core (mgrcore_t *core)
   dprintf(2, "Enter number of functions: ");
   read(0, str, 12);
   core->nmb_of_func = atoi(str);
-  dprintf(core->log_fd, "%d\n", core->nmb_of_func);
+  dprintf(core->log_fd, "number of functions: %d\n", core->nmb_of_func);
+
   dprintf(2, "Enter timeout in seconds: ");
   read(0, str, 12);
   core->timeout = atoi(str);
-  dprintf(core->log_fd, "%d\n", core->timeout);
+  dprintf(core->log_fd, "timeout in seconds: %d\n", core->timeout);
+
   dprintf(2, "Enter x: ");
   read(0, str, 12);
   core->x = atoi(str);
-  dprintf(core->log_fd, "%d\n", core->x);
+  dprintf(core->log_fd, "x: %d\n", core->x);
 
 
   core->functions = malloc(core->nmb_of_func * sizeof(func_t));

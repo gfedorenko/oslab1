@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+
 typedef struct    func_s
 {
   int             in;

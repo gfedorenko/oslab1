@@ -10,85 +10,86 @@
 
 int          f()
 {
-   int       ret;
-   fd_set    rfds;
-   fd_set    wfds;
-   char      str[12];
-   int       x;
 
-   while(42)
-   {
-     FD_ZERO(&rfds);
-     FD_SET(0, &rfds);
+  char        str[12];
+  int         num;
 
-     ret = select(1, &rfds, NULL, NULL, NULL);
-     if((ret > 0) && (FD_ISSET(0, &rfds)))
-     {
-       read(0, str, 11);
-       x = atoi(str);
-       if ((x % 5 == 0) && (x > 25))
-       {
-         sleep(10);
-         dprintf(1, "%d\n", (x + 1)*2);
-       }
-       else
-        if ((x % 5 == 0) && (x <= 20))
-        {
-          sleep(30);
-          dprintf(1, "%d\n", (x + 1)*2);
-        }
-       else
-          if (( x % 3 == 0) && (x > 30))
-          {
-            sleep(30);
-            dprintf(1, "0\n");
-          }
-          else
-          if (( x % 8 == 0) && (x < 30))
-          {
-            sleep(10);
-            dprintf(1, "0\n");
-          }
-          else
-         while(42);
-     }
-     exit(EXIT_SUCCESS);
-   }
+  read(0, str, 11);
+  num = atoi(str);
+
+  switch (num)
+  {
+    case 1:
+    {
+      sleep(4);
+      dprintf(1, "5\n");
+    }
+    case 2:
+    {
+      sleep(10);
+      dprintf(1, "5\n");
+    }
+    case 3:
+    {
+      sleep(5);
+      dprintf(1,"0\n");
+    }
+    case 4:
+    {
+      sleep(1000);
+    }
+    case 5:
+    {
+      sleep(5);
+      dprintf(1,"5\n");
+    }
+    case 6:
+    {
+      sleep(1000);
+    }
+  }
 }
 
 int          g()
 {
-   int       ret;
-   fd_set    rfds;
-   fd_set    wfds;
-   char      str[12];
-   int       x;
 
-   while(42)
-   {
-     FD_ZERO(&rfds);
-     FD_SET(0, &rfds);
+    char        str[12];
+    int         num;
 
-     ret = select(1, &rfds, NULL, NULL, NULL);
-     if((ret > 0) && (FD_ISSET(0, &rfds)))
-     {
-       read(0, str, 11);
-       x = atoi(str);
-       if ((x % 5 == 0)&&(x < 70))
-       {
-         sleep(20);
-         dprintf(1, "%d\n", (x + 1)*2);
-       }
-       else
-       if ((x % 7 == 0)&&(x < 70))
-       {
-         sleep(20);
-         dprintf(1, "0\n");
-       }
-         while(1);
-     }
-     exit(EXIT_SUCCESS);
-   }
+    read(0, str, 11);
+    num = atoi(str);
+
+    switch (num)
+    {
+      case 1:
+      {
+        sleep(10);
+        dprintf(1, "3\n");
+      }
+      case 2:
+      {
+        sleep(4);
+        dprintf(1, "3\n");
+      }
+      case 3:
+      {
+        sleep(1000);
+      }
+      case 4:
+      {
+        sleep(5);
+        dprintf(1,"0\n");
+      }
+      case 5:
+      {
+        sleep(1000);
+      }
+      case 6:
+      {
+        sleep(5);
+        dprintf(1,"5\n");
+      }
+    }
 }
 
 // redirect the input (STDIN to the pipe)

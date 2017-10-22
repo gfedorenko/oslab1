@@ -38,4 +38,5 @@ void     init_core (mgrcore_t *core)
   core->functions = malloc(core->nmb_of_func * sizeof(func_t));
   for (int i = 0; i < core->nmb_of_func; i++)
     core->functions[i] = malloc(sizeof(func_t));
+  core->prompt = 1;
 }

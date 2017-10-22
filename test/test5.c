@@ -8,7 +8,7 @@ int main()
   dprintf(manager.log_fd, "number of functions: %d\n", manager.nmb_of_func);
   manager.timeout = 10;
   dprintf(manager.log_fd, "timeout in seconds: %d\n", manager.timeout);
-  manager.x = 25;
+  manager.x = 5;
   dprintf(manager.log_fd, "x: %d\n", manager.x);
 
   manager.functions = malloc(manager.nmb_of_func * sizeof(func_t));

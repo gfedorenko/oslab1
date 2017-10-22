@@ -25,6 +25,7 @@ typedef struct    mgrcore_s
   int             nmb_of_func;
   int             log_fd;
   func_t          **functions;
+  int             prompt;
 }                 mgrcore_t;
 
 void             init_core (mgrcore_t *core);

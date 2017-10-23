@@ -9,11 +9,12 @@ void      timeout_reset(struct timeval *timer, int sec)
 void       find_result(mgrcore_t *core)
 {
   int   res = 0;
+
   for (int i = 0; i < core->nmb_of_func; i++)
-  if (res == 0)
-    res = core->functions[i]->result;
-  else
-    res = res | core->functions[i]->result;
+    if (res == 0)
+      res = core->functions[i]->result;
+    else
+      res = res | core->functions[i]->result;
 
   dprintf(2, "res: %d\n", res);
 }
@@ -23,6 +24,7 @@ int         is_on(mgrcore_t *core)
   for (int i = 0; i < core->nmb_of_func; i++)
     if (core->functions[i]->status != 1)
       return 1;
+
   find_result(core);
   return 0;
 }
@@ -32,7 +34,9 @@ int        set_fds(mgrcore_t *core, fd_set* rfds, fd_set* wfds)
   int max;
   FD_ZERO(rfds);
   FD_ZERO(wfds);
+
   //FD_SET(0, rfds);
+
   for (int i = 0; i < core->nmb_of_func; i++)
     if (core->functions[i]->status != 1)
     {
@@ -46,10 +50,12 @@ int        set_fds(mgrcore_t *core, fd_set* rfds, fd_set* wfds)
 int        ask_to_continue()
 {
   char     ans;
-  
+  char     new_line;
+
   dprintf(2, "Functions have been silent for a while. Are you sure you want to continue(y/n/w(without prompt)): ");
   read(0, &ans, 1);
-  dprintf(2,"resd\n");
+  read(0, &new_line,1);
+
   if (ans == 'w')
    return 0;
   if (ans == 'n')
@@ -97,7 +103,6 @@ int         polling_funcs(mgrcore_t *core)
       {
         char   temp[12];
 
-        //FD_CLR(core->functions[i]->in, &rfds);
         read(core->functions[i]->in, temp , 11 );
         core->functions[i]->result = atoi(temp);
 
@@ -117,7 +122,7 @@ int         polling_funcs(mgrcore_t *core)
       for (int i = 0; i < core->nmb_of_func; i++)
         if (core->functions[i]->status != 1)
           dprintf(core->log_fd, "Function #%d didn't answer\n", i);
-      dprintf(2, "prompt %d\n", core->prompt);
+
       if (core->prompt)
         core->prompt = ask_to_continue();
       timeout_reset(&timeout, core->timeout);
